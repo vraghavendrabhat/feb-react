@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import Greeting from './components/Greeting';
 import ActionBox from './components/ActionBox';
+import Box from './components/Box';
+import Product from './components/Product';
+import Employee from './components/Employee';
+import A from './components/A';
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +14,7 @@ class App extends Component {
     this.state = {
       message: 'greetings'
     }
-    // console.log("App :: constructor()");
+    console.log("App :: constructor()");
   }
   changeMessage(message) {
     this.setState({ message })
@@ -27,7 +31,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log("App :: render()");
+    console.log("App :: render()");
     // this.props.title = "New Titile"; // error i.e immutable
     let { title, trainer } = this.props;
     return (
@@ -35,9 +39,23 @@ class App extends Component {
         <hr />
         <h1>{title} : <small className="badge badge-primary">{trainer}</small> </h1>
         <hr />
-        
+        <A value={{ color: 'red' }} />
+        <A value={{ color: 'green' }} />
+        <hr />
+        <Box >
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </Box>
+        <Box>
+          <Employee />
+          <Employee />
+        </Box>
+        <hr />
+
         <ActionBox />
-        
+
         <hr />
 
         <button onClick={e => this.changeMessage('good morning')} className="btn btn-primary">GM</button>&nbsp;
@@ -53,6 +71,16 @@ class App extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    console.log("App :: componentDidMount()");
+    //n/w
+    setTimeout(() => {
+      let serverMessage = "Hello! from server";
+      this.setState({ message: serverMessage })
+    }, 2000);
+  }
+
 }
 
 App.defaultProps = {
