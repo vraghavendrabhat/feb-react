@@ -1,0 +1,6 @@
+
+react components
+------------------
+
+-  props ==> any immutable data-types from parenet to child
+-  state ==> any mutable data, on change which cause to re-render the compoennt
